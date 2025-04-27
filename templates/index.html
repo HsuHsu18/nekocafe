@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section">
+    <div class="section-content">
+        <div class="hero-image-wrapper">
+            <img src="{{ url_for('static', filename='images/1.png') }}" alt="Hero"
+            class="hero-image">
+        </div>
+        <div class="hero-details">
+            <h2 class="title">The Best Coffee</h2>
+            <h3 class="subtitle">Start your day with our special coffee!</h3>
+            <p class="description">Step into our cafe, where each coffee bean shares a tale and every sip brings a smile.</p>
+
+            <div class="buttons">
+                <a href="#" class="button order-now">Order Now</a>
+                <a href="#" class="button order-now">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About section -->
+<section class="about-section" id="about">
+<div class="section-content">
+    <div class="about-image-wrapper">
+    <img src="{{ url_for('static', filename='images/2.jpeg') }}" alt="About"
+    class="about-image">
+    </div>
+    <div class="about-details">
+    <h2 class="section-title">About Us</h2>
+    <p class="text">Welcome to Neko Cafe, your purr-fect little hideaway where 
+        cozy vibes meet creamy lattes! ☕🐱 We're all about warm hugs in a mug, 
+        soft music, and the smell of fresh coffee floating through the air. Every 
+        drink is made with a sprinkle of love and a dash of magic — just the way you like it. 
+        Whether you're here to daydream, doodle, or hang with friends, our café is your happy place. 
+        Come curl up with a cup, stay as long as you like, and let Neko Cafe be your daily dose of cozy.
+    </p>
+    <div class="social-link-list">
+        <a href="#" class="social-link"><i class="fa-brands 
+        fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands 
+        fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands 
+        fa-x-twitter"></i></a>
+    </div>
+    </div>
+</div>
+</section>
+
+<!-- Menu section -->
+<section  class="menu-section" id="menu">
+<h2 class="section-title">Our Menu</h2>
+<div class="section-content">
+    <ul class="menu-list">
+        {% for item in menu_items %}
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/3.png') }}" alt="Neko's Hot Picks" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="hot-picks-details">Neko's Hot Picks</h3>
+            <p class="text">A cozy collection of steamy sips made to perk you up and make your heart smile.</p>
+
+            <div class="menu-details" id="hot-picks-details">
+                <ul>
+                    <li>Expresso - £2.50</li>
+                    <li>Cappuccino - £3.50</li>
+                    <li>Latte - £3.50</li>
+                    <li>Mocha - £4.50</li>
+                    <li>Hot Chocolate - £4.50</li>
+                </ul>
+            </div>
+        </li>
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/4.png') }}" alt="Neko's Cold Picks" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="hot-picks-details">Neko's Cold Picks</h3>
+            <p class="text">Chill out with our refreshing sips cool, colorful, and crafted to delight.</p>
+            
+            <div class="menu-details" id="cold-picks-details">
+                <ul>
+                    <li>Ice cappucino - £3.50</li>
+                    <li>Ice Latte - £3.50</li>
+                    <li>Ice Mocha - £3.50</li>
+                    <li>Ice Vanilla Latte - £4.50</li>
+                    <li>Ice Caramel Mocha - £4.50</li>
+                </ul>
+            </div>  
+        </li>
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/5.png') }}" alt="Neko's Fresh Picks" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="fresh-picks-details">Neko's Fresh Picks</h3>
+            <p class="text">Sip into something refreshing! Neko's favorite fresh drinks cool, colorful, and bursting with flavor.</p>
+            
+            <div class="menu-details" id="fresh-picks-details">
+                <ul>
+                    <li>Respberry Lemonate - £3.50</li>
+                    <li>Strawberry Lemonate- £3.50</li>
+                    <li>Apple & Lime - £3.50</li>
+                    <li>Passionfruit Soda - £3.50</li>
+                    <li>Berries Soda - £3.50</li>
+                </ul>
+            </div>
+        </li>
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/6.png') }}" alt="Tea" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="tea-picks-details">Neko's Tea Picks</h3>
+            <p class="text">From calming classics to fragrant blends, our teas are tiny escapes in every cup.</p>
+            
+            <div class="menu-details" id="Tea-picks-details">
+                <ul>
+                    <li>Green Tea - £2.50</li>
+                    <li>Fruit Tea - £3.50</li>
+                    <li>Very Berry- £3.50</li>
+                    <li>Early Grey - £3.50</li>
+                    <li>KIka Cherry- £3.50</li>
+                </ul>
+            </div>
+        </li>
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/7.png') }}" alt="Dessert" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="dessert-picks-details">Neko's Dessert Picks</h3>
+            <p class="text">Sweet little moments made to melt hearts one bite, and you're in heaven.</p>
+            
+            <div class="menu-details" id="Dessert-picks-details">
+                <ul>
+                    <li>Tiramisu - £4.50</li>
+                    <li>Chocolate Fudge - £4.50</li>
+                    <li>Carrot Cake- £4.50</li>
+                    <li>American Cheesecake - £4.50</li>
+                    <li>Red Velvet- £4.50</li>
+                    <li>Strawberry Milkcake - £4.50</li>
+                </ul>
+            </div>
+        </li>
+        </li>
+        <li class="menu-item">
+            <img src="{{ url_for('static', filename='images/8.png') }}" alt="Food" class="menu-image">
+            <h3 class="name toggle-title" data-details-id="food-picks-details">Neko's food Picks</h3>
+            <p class="text">Tasty, heartwarming bites made with love and perfect for every cozy craving.</p>
+            
+            <div class="menu-details" id="food-picks-details">
+                <ul>
+                    <li>All day Breakfast - £12.50</li>
+                    <li>Chicken Salad - £6.50</li>
+                    <li>Avocado Tost - £8.50</li>
+                    <li>Double spicy pork Burger- £10.50</li>
+                    <li>Specila cheese & chicken Pizza - £15.50</li>
+                    <li>Primum Stake- £20.50</li>
+                </ul>
+            </div>
+        </li>
+        </li>
+    </ul>
+</div>
+</section>
+
+<!-- Gallery section -->
+<section class="gallery-section" id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <div class="section-contect">
+    <ul class="gallery-list">
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/9.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/10.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/11.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/12.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/13.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+        <li class="gallery-item">
+            <img src="{{ url_for('static', filename='images/14.jpeg') }}" alt="Gallery" class="gallery-image">
+        </li>
+    </ul>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee website | CodingNepak</title> 
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    {% block styles %}{% endblock %}
+
+    {% block header %}
+        <nav class="navbar section-content">
+            <a href="#" class="nav-logo">
+                <h2 class="logo-text">Neko Cafe ฅ^•ﻌ•^ฅ</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul> 
+        
+            <button id="menu-open-button" class="fas fa-bars"></button>
+            
+        </nav>
+    {% endblock %}
+
+
+    {% block content %}{% endblock %}
+
+
+    {% block footer %}
+    <div class="footer-section" id="footer">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-contect">
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-location-crosshairs"></li>
+                <p>1 City Rd, Cardiff CF24 3BJ</p>
+            </ul>
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-envelope"></li>
+                <p>info@coffeeshopwebsite.com</p>
+            </ul>
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-phone"></li>
+                <p>(+44) 123 456789 </p>
+            </ul>
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-clock"></li>
+                <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+            </ul>
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-clock"></li>
+                <p>Saturady: Closed</p>
+                <p>Sunday: Closed</p>
+            </ul>
+            <ul class="contact-info-list">
+                <li class="fa-solid fa-globe"></li>
+                <p>www.nekocafeweb.com</p>
+            </ul>
+            <p class="copyright">clara.coffeewebsite.com</p>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <link rel="scripts" href="{{ url_for('static', filename='scripts/base.js') }}"
+    {% block scripts %}{% endblock %}
+</html>
