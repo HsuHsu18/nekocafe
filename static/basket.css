@@ -1,0 +1,19 @@
+/* basket.css */
+
+/* Basket item styles */
+.basket-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.basket-item-name {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.basket-item-price {
+    font-size: 1.1em;
+    color: #f77f00;
+}

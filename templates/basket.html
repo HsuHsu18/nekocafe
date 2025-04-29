@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="basket-section">
+        <h2 class="section-title">Your Basket</h2>
+        <div class="section-content">
+            <ul class="basket-list">
+                {% if basket_items %}
+                    {% for item in basket_items %}
+                    <li class="basket-item">
+                        <img src="{{ url_for('static', filename=item['image_url']) }}" alt="{{ item['name'] }}" class="basket-item-image">
+                        <div class="basket-item-details">
+                            <h3 class="basket-item-name">{{ item['name'] }}</h3>
+                            <p class="basket-item-price">£{{ item['price'] }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <p>Your basket is empty.</p>
+                {% endif %}
+            </ul>
+            <div class="basket-summary">
+                <p>Total: £{{ total_price }}</p>
+                <a href="{{ url_for('checkout') }}" class="button checkout-button">Checkout</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

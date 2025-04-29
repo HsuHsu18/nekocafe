@@ -1,4 +1,4 @@
-/* Importing google fonts */
+/* Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
@@ -12,14 +12,13 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Styling for whole site */
 ul {
     list-style: none;
 }
 
 a {
-    text-decoration:none;
-    color:#fff3f3;
+    text-decoration: none;
+    color: #fff3f3;
 }
 
 button {
@@ -30,13 +29,6 @@ button {
 
 img {
     width: 100%;
-}
-
-.section-content {
-    margin: 0 auto;
-    padding: 0 20px;
-    max-width: 40cm;
-    
 }
 
 .section-content {
@@ -62,7 +54,7 @@ img {
     background: #bd91d8;
 }
 
-/* Navbar styling*/
+/* Navbar */
 header {
     position: fixed;
     width: 100%;
@@ -78,10 +70,10 @@ header .navbar {
 }
 
 .navbar .nav-logo .logo-text {
-    color:#ffffff;
-    font-size:x-large; 
+    color: #ffffff;
+    font-size: x-large;
     font-weight: semibold;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .navbar .nav-menu {
@@ -93,21 +85,21 @@ header .navbar {
     padding: 10px 18px;
     color: #ffffff;
     font-size: medium;
-    background:#bd91d8;
-    border-radius: 30cqmax; 
+    background: #bd91d8;
+    border-radius: 30cqmax;
     transition: 0.3s ease;
 }
 
 .navbar .nav-menu .nav-link:hover {
     color: #e7aecd;
-    Background: #bd91d8;
+    background: #bd91d8;
 }
 
 .navbar :where(#menu-close-button, #menu-open-button) {
     display: none;
 }
 
-/* Hero section styling */
+/* Hero Section */
 .hero-section {
     min-height: 100vh;
     background: #e7aecd;
@@ -118,12 +110,12 @@ header .navbar {
     align-items: center;
     min-height: 100vh;
     color: #ffffff;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .hero-section .hero-details .title {
     font-size: x-large;
-    color:#bd91d8;
+    color: #bd91d8;
     font-family: "Miniver", sans-serif;
 }
 
@@ -148,7 +140,7 @@ header .navbar {
 .hero-section .hero-details .button {
     padding: 10px 25px;
     border: 2px solid transparent;
-    color:#e7aecd;
+    color: #e7aecd;
     border-radius: 30cm;
     background: #bd91d8;
     font-weight: medium;
@@ -158,15 +150,15 @@ header .navbar {
 
 .hero-section .hero-details .button:hover,
 .hero-section .hero-details .contact-us {
-    color:#ffffff;
-    border-color:#bd91d8;
+    color: #ffffff;
+    border-color: #bd91d8;
     background: transparent;
 }
 
 .hero-section .hero-details .contact-us:hover {
-    color:#e7aecd;
-    border-color:#bd91d8;
-    background:#bd91d8;
+    color: #e7aecd;
+    border-color: #bd91d8;
+    background: #bd91d8;
 }
 
 .hero-section .hero-image-wrapper {
@@ -174,61 +166,10 @@ header .navbar {
     margin-right: 30px;
 }
 
- /* About section styling */
- .about-section {
-    padding:120px 0;
-    background: #ffffff;
-}
-
-.about-section .section-content {
-    display:flex;
-    gap: 50px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.about-section .about-image-wrapper .about-image {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.about-section.about-details .section-title {
-    padding: 0;
-}
-
-.about-section.about-details {
-    max-width: 50%;
-}
-
-.about-section.about-details .text {
-    line-height: 30px;
-    margin: 50px 0 30px;
-    text-align: center;
-    font-size: medium;
-}
-
-.about-section .social-link-list {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-}
-
-.about-section .social-link-list .social-link {
-    color:#e7aecd;
-    font-size: larger;
-    transition: 0.2s ease;
-}
-
-.about-section .social-link-list .social-link:hover {
-    color: #bd91d8;
-}
-
-/* Menu section styling*/
+/* Menu Section */
 .menu-section {
     padding: 60px 20px;
-    background:#e2c3cf;
+    background: #e2c3cf;
     text-align: center;
 }
 
@@ -245,17 +186,16 @@ header .navbar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;   
+    gap: 10px;
 }
 
 .menu-section .menu-list .menu-item .menu-image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
-    border-radius: 50%; /* Circular image */
+    object-fit: contain;
+    border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    object-fit: contain;
 }
 
 .menu-section .menu-list .menu-item .name {
@@ -268,24 +208,7 @@ header .navbar {
     font-size: medium;
 }
 
-/* Menu details  */
-.menu-details {
-    display: none;
-    margin-top: 10px;
-    text-align: left;
-}
-
-.menu-details ul {
-    padding-left: 0;
-    list-style: none;
-    font-size: 0.9rem;
-}
-
-.menu-details li {
-    margin: 4px 0;
-}
-
-/* Gallery section styling */
+/* Gallery Section */
 .gallery-section {
     padding: 50px 0 100px;
 }
@@ -313,7 +236,7 @@ header .navbar {
     transform: scale(1.1);
 }
 
-/* Contact us section styling*/
+/* Footer */
 .footer-section {
     padding: 50px 0 100px;
     background: #965679;
@@ -337,6 +260,7 @@ header .navbar {
     font-size: medium;
 }
 
+/* Responsive Queries — Shared */
 @media screen and (max-width: 1024px) {
     .menu-section .menu-list {
         gap: 60px;
@@ -347,15 +271,7 @@ header .navbar {
     }
 }
 
-@media screen and (max-width: 900px){
-    :root {
-        --font-size-m: 1rem;
-        --font-size-l: 1.3rem;
-        --font-size-xl: 1.5rem;
-        --font-size-xxl: 1.8rem;
-    }
-
-    
+@media screen and (max-width: 900px) {
     body.show-mobile-menu header::before {
         content: "";
         position: fixed;
@@ -364,19 +280,17 @@ header .navbar {
         height: 100%;
         width: 100%;
         backdrop-filter: blur(5px);
-        background:blur;
     }
 
-    .navbar :where(#menu-close-button, 
-    #menu-open-button) {
+    .navbar :where(#menu-close-button, #menu-open-button) {
         display: block;
         font-size: larger;
     }
 
     .navbar #menu-close-button {
-       position: absolute; 
-       right: 30px;
-       top: 30px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
     }
 
     .navbar #menu-open-button {
@@ -384,17 +298,16 @@ header .navbar {
     }
 
     .navbar .nav-menu {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: fixed;
         left: -100%;
         top: 0;
         width: 300px;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding-top: 100px;
-        background:#ffffff;
+        background: #ffffff;
         transition: left 0.2s ease;
         z-index: 999;
     }
@@ -404,7 +317,7 @@ header .navbar {
     }
 
     .navbar .nav-menu .nav-link {
-        color:black;
+        color: black;
         display: block;
         margin-top: 17px;
         font-size: larger;
@@ -414,20 +327,8 @@ header .navbar {
         gap: 50px;
         text-align: center;
         padding: 30px 20px 20px;
-        flex-direction: column-reverse;
-        justify-content: center;
-    }
-
-    .hero-section .section-content {
-        gap: 50px;
-        text-align:center;
-        padding: 30px 20px 20px;
         flex-direction: column;
         justify-content: center;
-    }
-
-    .hero-section .hero-details :is(.subtitle, .description), .about-section .about-details, .contact-section .contact-form {
-        max-width: 100%;      
     }
 
     .hero-section .hero-details .buttons {
@@ -435,32 +336,16 @@ header .navbar {
     }
 
     .hero-section .hero-image-wrapper {
-        max-width: 270px;;
+        max-width: 270px;
         margin-right: 0;
     }
 
-    .about-section .section-content {
-        gap: 70px;
-        flex-direction: column;
-    }
-
-    .about-section .about-image-wrapper .about-image {
-        width: 100%;
-        height: 100%;
-        max-width: 250px;
-        aspect-ratio: 1;
-    }
-
-    .menu-secti .menu-list {
+    .menu-section .menu-list {
         gap: 30px;
     }
 
-    .menu-secti .menu-list .menu-item {
+    .menu-section .menu-list .menu-item {
         width: calc(100% / 2 - 60px);
-    }
-
-    .menu-section .menu-list .menu-item .menu-image {
-        max-width: 200px;
     }
 
     .gallery-section .gallery-list {
@@ -470,11 +355,6 @@ header .navbar {
     .gallery-section .gallery-list .gallery-item {
         width: calc(100% / 2 - 30px);
     }
-
-    .contact-section .section-contect {
-        align-items: center;
-        flex-direction: column-reverse;
-    }
 }
 
 @media screen and (max-width: 640px) {
@@ -482,7 +362,8 @@ header .navbar {
         gap: 60px;
     }
 
-    .menu-section .menu-list .menu-item, .gallery-section .gallery-list .gallery-item {
+    .menu-section .menu-list .menu-item,
+    .gallery-section .gallery-list .gallery-item {
         width: 100%;
     }
 }
