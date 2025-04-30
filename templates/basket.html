@@ -1,29 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <section class="basket-section">
-        <h2 class="section-title">Your Basket</h2>
-        <div class="section-content">
-            <ul class="basket-list">
-                {% if basket_items %}
-                    {% for item in basket_items %}
-                    <li class="basket-item">
-                        <img src="{{ url_for('static', filename=item['image_url']) }}" alt="{{ item['name'] }}" class="basket-item-image">
-                        <div class="basket-item-details">
-                            <h3 class="basket-item-name">{{ item['name'] }}</h3>
-                            <p class="basket-item-price">£{{ item['price'] }}</p>
-                        </div>
-                    </li>
-                    {% endfor %}
-                {% else %}
-                    <p>Your basket is empty.</p>
-                {% endif %}
-            </ul>
-            <div class="basket-summary">
-                <p>Total: £{{ total_price }}</p>
-                <a href="{{ url_for('checkout') }}" class="button checkout-button">Checkout</a>
-            </div>
+<section class="basket-section">
+    <h2 class="section-title">Your Basket</h2>
+    {% if items %}
+        <ul class="basket-list">
+            {% for item in items %}
+            <li class="basket-item">
+                <img src="{{ url_for('static', filename=item.menu_item.image_url) }}" class="basket-image">
+                <div>
+                    <h3>{{ item.menu_item.name }}</h3>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Subtotal: £{{ '%.2f' | format(item.menu_item.price * item.quantity) }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="total">
+            <strong>Total: £{{ '%.2f' | format(total) }}</strong>
+            <a href="{{ url_for('checkout') }}" class="button">Checkout</a>
         </div>
-    </section>
+    {% else %}
+        <p>Your basket is empty.</p>
+    {% endif %}
+</section>
 {% endblock %}
+

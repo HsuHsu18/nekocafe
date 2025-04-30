@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
+from models import db, MenuItem, BasketItem
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for sessions
@@ -9,18 +10,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///nekocafe.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
-db = SQLAlchemy()
+# db = SQLAlchemy()
 db.init_app(app)
 
-# MenuItem model
-class MenuItem(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    price = db.Column(db.Float)
-    description = db.Column(db.String(200))
-    category = db.Column(db.String(50))
-    image_url = db.Column(db.String(100))  # e.g. images/1.png
-    carbon_impact = db.Column(db.Float)
+# # MenuItem model
+# class MenuItem(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(100))
+#     price = db.Column(db.Float)
+#     description = db.Column(db.String(200))
+#     category = db.Column(db.String(50))
+#     image_url = db.Column(db.String(100))  # e.g. images/1.png
+#     carbon_impact = db.Column(db.Float)
 
 with app.app_context():
     db.create_all()  # Create all tables if they don't exist
@@ -28,8 +29,9 @@ with app.app_context():
 # Route to display menu
 @app.route('/')
 def index():
-    menu_items = MenuItem.query.all()  # Fetch all menu items
-    return render_template('index.html', menu_items=menu_items)
+    menu_items_py = MenuItem.query.all()  # Fetch all menu items
+    print(menu_items_py)  # Debugging line to check the fetched items
+    return render_template('index.html', menu_items = menu_items_py)
 
 # Add item to the basket
 @app.route('/add_to_basket/<int:item_id>')

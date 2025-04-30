@@ -1,0 +1,23 @@
+.basket-section {
+    padding: 2rem;
+    background-color: #f0c9e4;
+}
+
+.basket-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f0c9e4;
+    padding-bottom: 1rem;
+}
+
+.basket-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.total {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+}

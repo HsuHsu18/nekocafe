@@ -3,19 +3,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee website | CodingNepak</title> 
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/defaults.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
     {% block styles %}{% endblock %}
 
     {% block header %}
+    <header>
         <nav class="navbar section-content">
             <a href="#" class="nav-logo">
                 <h2 class="logo-text">Neko Cafe ฅ^•ﻌ•^ฅ</h2>
             </a>
             <ul class="nav-menu">
                 <button id="menu-close-button" class="fas fa-times"></button>
-
+    
                 <li class="nav-item">
                     <a href="#" class="nav-link">Home</a>
                 </li>
@@ -35,7 +35,8 @@
         
             <button id="menu-open-button" class="fas fa-bars"></button>
             
-        </nav>
+        </nav>    
+    </header>
     {% endblock %}
 
 
@@ -43,7 +44,7 @@
 
 
     {% block footer %}
-    <div class="footer-section" id="footer">
+    <section class="contact-section" id="contact">
         <h2 class="section-title">Contact Us</h2>
         <div class="section-contect">
             <ul class="contact-info-list">
@@ -73,9 +74,9 @@
             </ul>
             <p class="copyright">clara.coffeewebsite.com</p>
         </div>
-    </div>
+    </section>
 
     {% endblock %}
 
-    <link rel="scripts" href="{{ url_for('static', filename='scripts/base.js') }}"
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/base.js') }}"></script>
     {% block scripts %}{% endblock %}
