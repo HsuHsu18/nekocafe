@@ -44,26 +44,45 @@
 
 
     <section class="menu-section" id="menu">
-        <h2 class="section-title">Our Menu</h2>
-        <div class="section-content">
-            <ul class="menu-list">
-                {% for item in menu_items %}
-                <li class="menu-item">
+    <h2 class="section-title">Our Menu</h2>
+
+    <div class="menu-controls">
+        <input type="text" id="searchInput" placeholder="Search for a drink..." onkeyup="filterMenu()">
+        <select id="categoryFilter" onchange="filterMenu()">
+            <option value="all">All</option>
+            <option value="hot">Hot</option>
+            <option value="cold">Cold</option>            
+            <option value="tea">Tea</option>
+            <option value="dessert">Dessert</option>  
+        </select>
+    </div>
+
+    <!-- test -->
+    <div class="menu-list">
+        {% for category in product_types %}
+        <div class="menu-category">
+            <div class="menu-item toggle-title" onclick="toggleMenu('{{ category.id }}-list')">
+                <img src="{{ url_for('static', filename='images/categories/' + category.id|string + '.png') }}" alt="{{ category.category }}" class="menu-image">
+                <h3 class="name">Neko's {{ category.category }} Picks</h3>
+                <p class="text">{{ category.description }}</p>
+            </div>
+            <ul class="submenu-list" id="{{ category.id }}-list">
+                {% for item in category.menu_items %}
+                <li class="menu-item" data-name="{{ item.name | lower }}" data-category="{{ category.category }}">
                     <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}" class="menu-image">
-                     <!-- Menu Name and Description -->
-                     <h3 class="name">{{ item.name }}</h3>
-                     <p class="description">{{ item.description }}</p>
-                     
-                     <!-- Menu Price -->
-                     <p class="price">£{{ item.price }}</p> <!-- Displaying the price dynamically -->
-                     
-                     <!-- Add to Basket Button -->
-                     <a href="{{ url_for('add_to_basket', item_id=item.id) }}" class="button add-to-basket">Add to Basket</a>
-                 </li>
-                 {% endfor %}
-             </ul>
-         </div>
-     </section>
+                    <h3 class="name">{{ item.name }}</h3>
+                    <p class="description">{{ item.description }}</p>
+                    <p class="price">£{{ item.price }}</p>
+                    <a href="{{ url_for('add_to_basket', item_id=item.id) }}" class="button add-to-basket">Add to Basket</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- end test -->
+</section>
+
 
 
     <section class="gallery-section" id="gallery">
@@ -93,3 +112,16 @@
     </section>
 
 {% endblock %}
+
+{% block scripts %}
+<script>
+function toggleMenu(id) {
+    const submenu = document.getElementById(id);
+    submenu.classList.toggle('show');
+}
+</script>
+{% endblock %}
+    
+    
+
+    

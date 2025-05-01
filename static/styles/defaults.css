@@ -248,11 +248,10 @@ header .navbar {
     gap: 10px;   
 }
 
-.menu-section .menu-list .menu-item .menu-image {
+.menu-image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
-    border-radius: 50%; /* Circular image */
+    border-radius: 50%; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     object-fit: contain;
@@ -269,21 +268,56 @@ header .navbar {
 }
 
 /* Menu details  */
-.menu-details {
+.menu-section {
+    padding: 60px 20px;
+    background: #e2c3cf;
+    text-align: center;
+}
+
+.menu-controls {
+    margin-bottom: 20px;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    text-align: center;
+}
+
+.menu-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.submenu-list {
     display: none;
-    margin-top: 10px;
-    text-align: left;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.menu-details ul {
-    padding-left: 0;
-    list-style: none;
-    font-size: 0.9rem;
+.submenu-list.show {
+    display: flex;
 }
 
-.menu-details li {
-    margin: 4px 0;
+.toggle-title {
+    cursor: pointer;
 }
+
 
 /* Gallery section styling */
 .gallery-section {
