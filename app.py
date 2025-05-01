@@ -1,6 +1,10 @@
 from flask import Flask, render_template, session, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
 from models import db, MenuItem, BasketItem, ProductTypes
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Required for sessions
@@ -24,13 +28,35 @@ db.init_app(app)
 with app.app_context():
     db.create_all()  # Create all tables if they don't exist
 
+# Define the search form
+class SearchForm(FlaskForm):
+    search = StringField('Search', validators=[DataRequired()], render_kw={"placeholder": "Search for a drink..."})
+    submit = SubmitField('Search')
+
 # Route to display menu
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    form = SearchForm()
+    query = None
     menu_items_py = MenuItem.query.all()  # Fetch all menu items
     print(menu_items_py)  # Debugging line to check the fetched items
     product_types = ProductTypes.query.all()  # Fetch all product types
-    return render_template('index.html', menu_items = menu_items_py, product_types=product_types)
+    selected_category = request.form.get('category', 'all')  # Get selected category from the form
+
+    if form.validate_on_submit():
+        query = form.search.data.lower()  # Get the search query from the form
+
+    # Fetch all product types and filter menu items
+    product_types = ProductTypes.query.all()
+    if query or selected_category != 'all':
+        menu_items_py = MenuItem.query.filter(
+            (MenuItem.name.ilike(f"%{query}%") if query else True) &
+            (MenuItem.category.has(category=selected_category) if selected_category != 'all' else True)
+        ).all()
+    else:
+        menu_items_py = MenuItem.query.all()
+
+    return render_template('index.html', form=form, menu_items=menu_items_py, product_types=product_types)
 
 # Add item to the basket
 @app.route('/add_to_basket/<int:item_id>')

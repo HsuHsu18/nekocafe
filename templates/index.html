@@ -43,17 +43,16 @@
     </section>
 
 
-    <section class="menu-section" id="menu">
+<section class="menu-section" id="menu">
     <h2 class="section-title">Our Menu</h2>
 
     <div class="menu-controls">
         <input type="text" id="searchInput" placeholder="Search for a drink..." onkeyup="filterMenu()">
         <select id="categoryFilter" onchange="filterMenu()">
             <option value="all">All</option>
-            <option value="hot">Hot</option>
-            <option value="cold">Cold</option>            
-            <option value="tea">Tea</option>
-            <option value="dessert">Dessert</option>  
+            {% for category in product_types %}
+            <option value="{{ category.category | lower }}">{{ category.category }}</option>
+            {% endfor %}
         </select>
     </div>
 
@@ -115,6 +114,39 @@
 
 {% block scripts %}
 <script>
+
+function filterMenu() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const categoryFilter = document.getElementById('categoryFilter').value.toLowerCase();
+    const menuCategories = document.querySelectorAll('.menu-category');
+
+    menuCategories.forEach(category => {
+        const categoryName = category.getAttribute('data-category');
+        const menuItems = category.querySelectorAll('.submenu-list .menu-item');
+        let categoryHasVisibleItems = false;
+
+        menuItems.forEach(item => {
+            const itemName = item.getAttribute('data-name');
+            const itemCategory = item.getAttribute('data-category');
+
+            if ((itemName.includes(searchInput) || searchInput === '') &&
+                (itemCategory === categoryFilter || categoryFilter === 'all')) {
+                item.style.display = 'block';
+                categoryHasVisibleItems = true;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        if (categoryHasVisibleItems) {
+            category.style.display = 'block';
+            category.querySelector('.submenu-list').classList.add('show');
+        } else {
+            category.style.display = 'none';
+            category.querySelector('.submenu-list').classList.remove('show');
+        }
+    });
+}
 function toggleMenu(id) {
     const submenu = document.getElementById(id);
     submenu.classList.toggle('show');

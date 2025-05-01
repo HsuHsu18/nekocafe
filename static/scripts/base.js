@@ -43,3 +43,5 @@ document.querySelectorAll('.toggle-title').forEach(el=>{
       details.style.display = details.style.display==='block' ? 'none' : 'block';
     });
   });
+
+  

@@ -225,6 +225,18 @@ header .navbar {
     color: #bd91d8;
 }
 
+/* Search bar styling*/
+.submenu-list {
+    display: none;
+}
+
+.submenu-list.show {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    justify-content: center;
+}
+
 /* Menu section styling*/
 .menu-section {
     padding: 60px 20px;
