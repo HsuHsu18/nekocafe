@@ -58,6 +58,13 @@ def index():
 
     return render_template('index.html', form=form, menu_items=menu_items_py, product_types=product_types)
 
+@app.route('/item/<int:item_id>',methods=['GET', 'POST'])
+def claraNekocafe(item_id):
+    item= db.get_or_404(MenuItem, item_id)
+    print(item)
+    return render_template('claraNekocafe.html', item=item)
+
+
 @app.route('/add_to_basket/<int:item_id>')
 def add_to_basket(item_id):
     # default to empty dict

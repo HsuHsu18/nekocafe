@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/claraNekocafe.css') }}">
+{% endblock %}
+
+<!-- 
+PSEUDOCODE:
+Display product picures from database based on the techID
+display product description and price
+Display add to basket button
+-->
+{% block content %}
+    <section class="product-section">
+        <h2 class="section-title">{{ item.name }}</h2>
+        <div class="product-container">
+            <!-- Display product image -->
+            <div class="product-image">
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}">
+            </div>
+
+            <!-- Display product details -->
+            <div class="product-details">
+                <p class="product-description">{{ item.description }}</p>
+                <p class="product-price">Price: £{{ '%.2f' | format(item.price) }}</p>
+
+                <!-- Add to Basket Button -->
+                <form action="{{ url_for('add_to_basket', item_id=item.id) }}" method="get">
+                    <button type="submit" class="button add-to-basket">Add to Basket</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

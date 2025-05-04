@@ -68,11 +68,13 @@
             <ul class="submenu-list" id="{{ category.id }}-list">
                 {% for item in category.menu_items %}
                 <li class="menu-item" data-name="{{ item.name | lower }}" data-category="{{ category.category }}">
+                <a href="{{ url_for('claraNekocafe', item_id=item.id) }}">
                     <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}" class="menu-image">
                     <h3 class="name">{{ item.name }}</h3>
                     <p class="description">{{ item.description }}</p>
                     <p class="price">£{{ item.price }}</p>
                     <a href="{{ url_for('add_to_basket', item_id=item.id) }}" class="button add-to-basket">Add to Basket</a>
+                </a>
                 </li>
                 {% endfor %}
             </ul>
