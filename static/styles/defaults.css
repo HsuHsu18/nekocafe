@@ -107,6 +107,20 @@ header .navbar {
     display: none;
 }
 
+.basket-link {
+    display: inline-block;
+  }
+  
+  .basket-icon {
+    width: 30px;
+    height: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .basket-icon:hover {
+    transform: scale(1.1);
+  }
+
 /* Hero section styling */
 .hero-section {
     min-height: 100vh;

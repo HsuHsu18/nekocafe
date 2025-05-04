@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/basket.css') }}">
+{% endblock %}
+
 {% block content %}
 <section class="basket-section">
     <h2 class="section-title">Your Basket</h2>
@@ -7,11 +12,13 @@
         <ul class="basket-list">
             {% for item in items %}
             <li class="basket-item">
-                <img src="{{ url_for('static', filename=item.menu_item.image_url) }}" class="basket-image">
+                <img src="{{ url_for('static', filename=item.image_url) }}" class="basket-image">
                 <div>
-                    <h3>{{ item.menu_item.name }}</h3>
+                    <h3>{{ item.name }}</h3>
                     <p>Quantity: {{ item.quantity }}</p>
-                    <p>Subtotal: £{{ '%.2f' | format(item.menu_item.price * item.quantity) }}</p>
+                    <form action="{{ url_for('remove_from_basket', item_id=item.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="button remove">Remove</button>
+                    </form>
                 </div>
             </li>
             {% endfor %}
@@ -25,4 +32,6 @@
     {% endif %}
 </section>
 {% endblock %}
+
+
 

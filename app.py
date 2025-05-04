@@ -58,37 +58,131 @@ def index():
 
     return render_template('index.html', form=form, menu_items=menu_items_py, product_types=product_types)
 
-# Add item to the basket
 @app.route('/add_to_basket/<int:item_id>')
 def add_to_basket(item_id):
-    item = MenuItem.query.get(item_id)
-    if 'basket' not in session:
-        session['basket'] = []
+    # default to empty dict
+    basket = session.get('basket', {})
 
-    # Add the item to the basket (we store item details in the basket)
-    session['basket'].append({
-        'id': item.id,
-        'name': item.name,
-        'price': item.price,
-        'image_url': item.image_url
-    })
+    # if basket is not a dict (e.g., accidentally a list), reset it
+    if not isinstance(basket, dict):
+        basket = {}
 
+    item_id_str = str(item_id)
+    basket[item_id_str] = basket.get(item_id_str, 0) + 1
+
+    session['basket'] = basket
     session.modified = True
+
     return redirect(url_for('view_basket'))
 
-# View the basket
+@app.route('/remove_from_basket/<int:item_id>', methods=['POST'])
+def remove_from_basket(item_id):
+    basket = session.get('basket', {})
+
+    if not isinstance(basket, dict):
+        basket = {}
+
+    item_id_str = str(item_id)
+
+    if item_id_str in basket:
+        del basket[item_id_str]
+
+    session['basket'] = basket
+    session.modified = True
+
+    return redirect(url_for('view_basket'))
+
+
 @app.route('/basket')
 def view_basket():
-    basket_items = session.get('basket', [])
-    total_price = sum(item['price'] for item in basket_items)
-    return render_template('basket.html', basket_items=basket_items, total_price=total_price)
+    basket = session.get('basket', {})
+
+    if not isinstance(basket, dict):
+        basket = {}
+
+    items = []  # Initialize an empty list for items
+    total = 0.0  # Initialize the total to 0
+
+    for item_id_str, quantity in basket.items():
+        item = MenuItem.query.get(int(item_id_str))
+        if item:
+            # Add the MenuItem object directly to the list
+            item.quantity = quantity  # Add a custom attribute for quantity
+            items.append(item)
+            total += int(item.price) * int(quantity)
+
+    return render_template('basket.html', items=items, total=total)
+
+@app.context_processor
+def inject_basket():
+    basket = session.get('basket', {})
+    if not isinstance(basket, dict):
+        basket = {}
+
+    # Get the first item in the basket (if any)
+    first_item = None
+    for item_id_str in basket.keys():
+        first_item = MenuItem.query.get(int(item_id_str))
+        if first_item:
+            break
+
+    return {'basket_first_item': first_item}
+
+# @app.route('/remove_from_basket/<int:item_id>')
+# def remove_from_basket(item_id):
+#     basket = session.get('basket', {})
+
+#     item_id_str = str(item_id)
+#     if item_id_str in basket:
+#         del basket[item_id_str]
+#         session['basket'] = basket
+#         session.modified = True
+
+#     return redirect(url_for('view_basket'))
+
+
+# # Add item to the basket
+# @app.route('/add_to_basket/<int:item_id>')
+# def add_to_basket(item_id):
+#     item = MenuItem.query.get(item_id)
+#     if 'basket' not in session:
+#         session['basket'] = []
+
+#     # Add the item to the basket (we store item details in the basket)
+#     session['basket'].append({
+#         'id': item.id,
+#         'name': item.name,
+#         'price': item.price,
+#         'image_url': item.image_url
+#     })
+
+#     session.modified = True
+#     return redirect(url_for('view_basket'))
+
+# # View the basket
+# @app.route('/basket')
+# def view_basket():
+#     basket_items = session.get('basket', [])
+#     total_price = sum(item['price'] for item in basket_items)
+#     return render_template('basket.html', basket_items=basket_items, total_price=total_price)
 
 # Checkout (placeholder route)
 @app.route('/checkout')
 def checkout():
-    basket_items = session.get('basket', [])
-    total_price = sum(item['price'] for item in basket_items)
+    basket_items = session.get('basket', {})
+    total_price = 0.0
+
+    # Calculate the total price of items in the basket
+    for item_id_str, quantity in basket_items.items():
+        item = MenuItem.query.get(int(item_id_str))
+        if item:
+            total_price += int(item.price) * int(quantity)
+
     return render_template('checkout.html', basket_items=basket_items, total_price=total_price)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        host='0.0.0.0',
+        port=5001
+        )
