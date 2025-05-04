@@ -169,16 +169,22 @@ def inject_basket():
 # Checkout (placeholder route)
 @app.route('/checkout')
 def checkout():
-    basket_items = session.get('basket', {})
-    total_price = 0.0
+    basket = session.get('basket', {})
 
-    # Calculate the total price of items in the basket
-    for item_id_str, quantity in basket_items.items():
+    items = []  # Initialize an empty list for items
+    total = 0.0  # Initialize the total to 0
+
+    for item_id_str, quantity in basket.items():
         item = MenuItem.query.get(int(item_id_str))
         if item:
-            total_price += int(item.price) * int(quantity)
+            # Add the MenuItem object directly to the list
+            item.quantity = quantity  # Add a custom attribute for quantity
+            items.append(item)
+            total += int(item.price) * int(quantity)
 
-    return render_template('checkout.html', basket_items=basket_items, total_price=total_price)
+    print(basket)
+    print(total)
+    return render_template('checkout.html', basket_items=items, total_price=total)
 
 if __name__ == '__main__':
     app.run(

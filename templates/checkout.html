@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/checkout.css') }}">
+{% endblock %}
+
 {% block content %}
     <section class="checkout-section">
         <h2 class="section-title">Checkout</h2>
         <div class="section-content">
-            <ul class="checkout-list">
+            <div class="clara-basket-list">
                 {% for item in basket_items %}
-                <li class="checkout-item">
-                    <img src="{{ url_for('static', filename=item['image_url']) }}" alt="{{ item['name'] }}" class="checkout-item-image">
-                    <div class="checkout-item-details">
-                        <h3 class="checkout-item-name">{{ item['name'] }}</h3>
-                        <p class="checkout-item-price">£{{ item['price'] }}</p>
-                    </div>
-                </li>
+                <div class="clara-basket-item">
+                    <img src="{{ url_for('static', filename=item.image_url) }}" class="basket-image">
+                </div>
+                <div class="clara-basket-item-details">
+                    <h3>{{ item.name }}</h3>
+                    <p>Quantity: {{ item.quantity }}</p>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
             <div class="checkout-summary">
                 <p>Total: £{{ total_price }}</p>
                 <!-- Add a real checkout functionality here -->

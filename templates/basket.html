@@ -9,20 +9,20 @@
 <section class="basket-section">
     <h2 class="section-title">Your Basket</h2>
     {% if items %}
-        <ul class="basket-list">
+        <div class="clara-basket-list">
             {% for item in items %}
-            <li class="basket-item">
+            <div class="clara-basket-item">
                 <img src="{{ url_for('static', filename=item.image_url) }}" class="basket-image">
-                <div>
-                    <h3>{{ item.name }}</h3>
-                    <p>Quantity: {{ item.quantity }}</p>
-                    <form action="{{ url_for('remove_from_basket', item_id=item.id) }}" method="post" style="display:inline;">
-                        <button type="submit" class="button remove">Remove</button>
-                    </form>
-                </div>
-            </li>
+            </div>
+            <div class="clara-basket-item-details">
+                <h3>{{ item.name }}</h3>
+                <p>Quantity: {{ item.quantity }}</p>
+                <form action="{{ url_for('remove_from_basket', item_id=item.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="button remove">Remove</button>
+                </form>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
         <div class="total">
             <strong>Total: £{{ '%.2f' | format(total) }}</strong>
             <a href="{{ url_for('checkout') }}" class="button">Checkout</a>
